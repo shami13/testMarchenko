@@ -1,0 +1,12 @@
+[
+  {
+    "model": "models.User",
+    "pk": 1,
+    "fields": {
+      "first_name": "Mykhailo",
+      "last_name": "Marchenko",
+      "bio": "to be, or not to be",
+      "email": "shami13@gmail.com"
+    }
+  }
+]

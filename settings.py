@@ -67,6 +67,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'testMarchenko.middlewareHttpRequests.RequestSaverMiddleware',
 )
 
 ROOT_URLCONF = 'testMarchenko.urls'
@@ -83,5 +84,4 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'testMarchenko',
 )

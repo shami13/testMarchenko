@@ -6,7 +6,3 @@ class User(models.Model):
     lastName = models.CharField(max_length=50)
     bio = models.CharField(max_length=50)
     email = models.EmailField()
-    
-class Request(models.Model):
-    url = models.CharField(max_length=100)
-    

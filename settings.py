@@ -6,6 +6,8 @@ DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 # Django settings for testMarchenko project.
 
+FIXTURE_DIRS = (os.path.join(SITE_ROOT, 'fixtures'),)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -83,4 +85,5 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'testMarchenko',
 )

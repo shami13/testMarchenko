@@ -3,9 +3,8 @@ from django.shortcuts import render_to_response
 
 
 def main_page(request):
-    user_list = list(User.objects.all())
-    if len(user_list) > 0:
-        user = user_list[0]
+    if User.objects.count() > 0:
+        user = User.objects.get()
     else:
         user = User()
         user.firstName = 'Mykhailo'

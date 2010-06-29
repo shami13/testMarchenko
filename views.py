@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 
 def main_page(request):
     if User.objects.count() > 0:
-        user = User.objects.get()
+        user = User.objects.latest('pk')
     else:
         user = User()
         user.firstName = 'Mykhailo'

@@ -1,4 +1,5 @@
 from models import URL
+
 class MiddlewareHttp():
     def process_request(self, request):
         url = URL()

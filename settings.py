@@ -6,7 +6,7 @@ DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 # Django settings for testMarchenko project.
 
-FIXTURE_DIRS = (os.path.join(SITE_ROOT, 'fixtures'),)
+#FIXTURE_DIRS = (os.path.join(SITE_ROOT, 'fixtures'),)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -64,6 +64,8 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.load_template_source',
 #     'django.template.loaders.eggs.load_template_source',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = ('testMarchenko.context_processors.add_django_settings_to_request',)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

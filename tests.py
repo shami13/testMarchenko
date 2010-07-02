@@ -19,3 +19,9 @@ class SimpleTest(TestCase):
         self.failIfEqual(count, 0, "Middleware don't work")
         url=URL.objects.latest('pk')
         self.failUnlessEqual(url.url, 'testserver/main/', "Middleware don't work")
+        
+    def test_context_processor(self):
+        client = Client()
+        response = client.get('/main/')
+        self.failIfEqual(response.context.get('django.settings'), None, "Context processor don't work")
+        

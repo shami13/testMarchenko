@@ -1,8 +1,7 @@
 <html><head></head>
 <body>
-<h1>{{customer.firstName}} {{customer.lastName}}</h1>
-	<br/>
-{{customer.bio}}
-<br/>
-{{customer.email}}
+<form action="/save/" method="post">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
 </body></html>

@@ -9,7 +9,7 @@ class SimpleTest(TestCase):
         client = Client()
         response = client.get('/main/')
         self.failUnlessEqual(response.status_code, 200)
-        self.failIfEqual(response.context['customer'], None, "No customer in context")
+        self.failIfEqual(response.context['form'], None, "No customer in context")
     
     def test_middleware(self):
         count = URL.objects.count()

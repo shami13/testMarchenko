@@ -65,7 +65,10 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.load_template_source',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = ('testMarchenko.context_processors.add_django_settings_to_request',)
+TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
+                               'testMarchenko.context_processors.add_django_settings_to_request',)
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

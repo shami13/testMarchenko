@@ -23,5 +23,4 @@ class SimpleTest(TestCase):
     def test_context_processor(self):
         client = Client()
         response = client.get('/main/')
-        self.failIfEqual(response.context.get('django.settings'), None, "Context processor don't work")
-        
+        self.failIfEqual(response.context['django.settings'], None, "Context processor don't work")

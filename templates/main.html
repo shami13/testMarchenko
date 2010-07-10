@@ -1,6 +1,7 @@
 <html><head></head>
 <body>
-<form action="/save/" method="post">
+<form action="/main/" method="post">
+{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>

@@ -71,10 +71,10 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 MIDDLEWARE_CLASSES = (
+    'testMarchenko.middleware.MiddlewareHttp',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'testMarchenko.middleware.MiddlewareHttp',
     'django.middleware.csrf.CsrfViewMiddleware',
 )
 

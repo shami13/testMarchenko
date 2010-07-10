@@ -14,4 +14,5 @@ def main_page(request):
     else:
         user = User.objects.latest('pk')
         form = UserForm(instance=user)
+    form.fields.keyOrder.reverse()
     return render_to_response('main.html', {'form': form}, context_instance=RequestContext(request))

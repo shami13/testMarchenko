@@ -32,3 +32,8 @@ class SimpleTest(TestCase):
         response = client.get('')
         self.failUnlessEqual(response.status_code, 302)
     
+    def test_field_sort(self):
+        client = Client()
+        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        response = client.get('')
+        self.failUnlessEqual(response.context['form'].fields.keyOrder[0], 'birthDate')

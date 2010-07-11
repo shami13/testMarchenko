@@ -1,7 +1,9 @@
+{% load edit_list %}
 <html>
 <head>
 </head>
 <body>
-<form action="/main/" method="post">{% csrf_token %} {{ form.as_p}} <input type="submit" value="Submit" /></form>
+<form action="/main/" method="post">{% csrf_token %} {{form.as_p}} <input type="submit" value="Submit" /></form>
+{% edit_list user %}
 </body>
 </html>

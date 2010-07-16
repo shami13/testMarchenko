@@ -1,6 +1,6 @@
 <html><head></head>
 <body>
-<form action="/main/" method="post">
+<form action="{% url testMarchenko.views.main_page %}" method="post">
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>

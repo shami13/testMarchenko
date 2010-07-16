@@ -7,8 +7,8 @@ from forms import UserForm
 def main_page(request):
     if len(request.POST) > 0:
         form = UserForm(request.POST)
-        form.save()
-    else:
-        user = User.objects.latest('pk')
-        form = UserForm(instance=user)
+        if form.is_valid():
+            form.save()
+    user = User.objects.latest('pk')
+    form = UserForm(instance=user)
     return render_to_response('main.html', {'form': form}, context_instance=RequestContext(request))

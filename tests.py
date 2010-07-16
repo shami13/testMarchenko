@@ -1,4 +1,5 @@
 import os
+from forms import UserForm
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
 from django.test.client import Client
@@ -25,3 +26,11 @@ class SimpleTest(TestCase):
         response = client.get('')
         self.failIfEqual(response.context['django.settings'], None, "Context processor don't work")
         
+    def test_form_valid(self):
+        client = Client()
+        form = UserForm()
+        post_data = {
+            'form': form
+        }
+        response = client.post('', post_data)
+        self.failUnlessEqual(response.status_code, 200)

@@ -2,7 +2,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
 from django.test.client import Client
-from models import URL
+from models import URL, ModelActions
 
 class SimpleTest(TestCase):
     def test_details(self):
@@ -37,3 +37,10 @@ class SimpleTest(TestCase):
         client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnlessEqual(response.context['form'].fields.keyOrder[0], 'birthDate')
+        
+    def test_signals(self):
+        client = Client()
+        count = ModelActions.objects.count()
+        client.get("")
+        count = ModelActions.objects.count() - count
+        self.failUnlessEqual(count, 1, "Signal failed")

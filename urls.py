@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/(.*)', admin.site.root),
     (r'^accounts/', include('accounts.urls')),
+    (r'^admin/jsi18n/', 'django.views.i18n.javascript_catalog'),
 )

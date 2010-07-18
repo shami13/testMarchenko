@@ -1,4 +1,8 @@
-<html><head></head>
+{% load i18n adminmedia %}
+<html><head>
+  {{ form.media }}
+  
+</head>
 <body>
 <form action="/main/" method="post">
 {% csrf_token %}

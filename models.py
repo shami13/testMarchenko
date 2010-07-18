@@ -22,4 +22,6 @@ class ModelActions(models.Model):
     model = models.CharField(max_length=50)
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     date = models.DateTimeField(auto_now=True)
-   
+
+signals.pre_save.connect(add_models_action_save, sender=URL)    
+signals.post_delete.connect(add_models_action_delete, sender=URL)    

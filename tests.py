@@ -1,4 +1,5 @@
 import os
+from django.core.urlresolvers import resolve, reverse
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
 from django.test.client import Client
@@ -37,3 +38,11 @@ class SimpleTest(TestCase):
         client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnlessEqual(response.context['form'].fields.keyOrder[0], 'birthDate')
+        
+    def test_list_view(self):
+        client = Client()
+        response = client.get(reverse('testMarchenko.views.url_list')).context['object_list']
+        object_list = URL.objects.all()
+        self.failUnlessEqual(response[0], object_list[0], 'list view fail')
+
+        

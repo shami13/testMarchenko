@@ -1,7 +1,38 @@
 <html>
 <head>
+  <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/media/jquery.form.js"></script>
+   <script type="text/javascript"> 
+        $(document).ready(function() { 
+            var options = {
+            beforeSubmit: showLoad,
+            success: hideLoad};
+            $('#myForm').ajaxForm(options); 
+        }); 
+        
+        function showLoad(){
+          $("#load").empty().html('<img src="/media/images/ajax-loader.gif" />');
+          $('#myForm').children().each( 
+            function(){
+              $('this').attr('disabled', true);
+              $('this').attr('readonly', true);
+            }
+          );
+        }
+        
+        function hideLoad(){
+          $("#load").empty();
+          $('#myForm').children().each( 
+            function(){
+              $('this').removeAttr("disabled");
+              $('this').removeAttr("readonly");
+            }
+          );
+        }
+    </script> 
 </head>
 <body>
-<form action="/main/" method="post">{% csrf_token %} {{ form.as_p}} <input type="submit" value="Submit" /></form>
+<form id="myForm" action="/main/" method="post">{% csrf_token %} {{ form.as_p}} <input type="submit" value="Submit" /></form>
+<div id="load"></div>
 </body>
 </html>

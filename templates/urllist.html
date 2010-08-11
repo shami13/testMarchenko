@@ -1,15 +1,41 @@
 <html>
 <head>
+  <link rel="stylesheet" href="/media/blue/style.css" type="text/css" id="" media="print, projection, screen" /> 
+  <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/media/jquery.tablesorter.js"></script>
+  
+   <script type="text/javascript"> 
+  $(document).ready(function() 
+    { 
+        $("#urlTable").tablesorter({
+    sortList: [[0,0],[1,0]]
+  }); 
+    } 
+); 
+    </script>
 </head>
 <body>
-  <ul>
+  <table id="urlTable" cellspacing="1" class="tablesorter">
+    <thead> 
+<tr> 
+    <th>URL</th> 
+    <th>Priority</th> 
+</tr> 
+</thead> 
+    <tbody>
   {% for object in object_list %}
-    <li>
+    <tr>
+      <td>
         <a href="{{ object.url }}">
    {{ object.url }}
         </a>
-    </li>
+        </td>
+        <td>
+          {{ object.priority }}
+        </td>
+    </tr>
   {% endfor %}
-</ul>
+  </tbody>
+</table>
 </body>
 </html>

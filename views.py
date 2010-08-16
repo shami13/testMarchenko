@@ -9,6 +9,7 @@ def main_page(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-    user = User.objects.latest('pk')
-    form = UserForm(instance=user)
+    else:
+        user = User.objects.latest('pk')
+        form = UserForm(instance=user)
     return render_to_response('main.html', {'form': form}, context_instance=RequestContext(request))

@@ -1,8 +1,8 @@
-from django.core.management.base import AppCommand
+from django.core.management.base import NoArgsCommand
 
-def print_modles(app):
+def print_modles():
         from django.db.models import get_models
-        models = get_models(app)
+        models = get_models()
         result = ""
         for model in models:
             result += model._meta.object_name + " " + str(model.objects.count()) +"\n"
@@ -10,10 +10,9 @@ def print_modles(app):
                 result += "\t" + field.name + " " + field.get_internal_type() +"\n"
         return result
 
-class Command(AppCommand):
+class Command(NoArgsCommand):
     help = "Print for models for app"
-    args = "[appname ...]"
 
-    def handle_app(self, app, **options):
-        print print_modles(app)
+    def handle_noargs(self, **options):
+        print print_modles()
         

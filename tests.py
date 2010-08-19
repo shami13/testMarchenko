@@ -4,7 +4,7 @@ from django.db import models
 import string
 from django.contrib.auth.models import User
 from templatetags.edit_list import edit_list
-from forms import UserForm
+from django.core.urlresolvers import reverse
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
 from django.test.client import Client
@@ -13,7 +13,7 @@ from models import URL
 class SimpleTest(TestCase):
     def test_details(self):
         client = Client()
-        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        client.post(reverse('django.contrib.auth.views.login'), {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['form'], None, "No customer in context")
@@ -29,7 +29,7 @@ class SimpleTest(TestCase):
         
     def test_context_processor(self):
         client = Client()
-        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        client.post(reverse('django.contrib.auth.views.login'), {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failIfEqual(response.context['django.settings'], None, "Context processor don't work")
         
@@ -40,7 +40,7 @@ class SimpleTest(TestCase):
         
     def test_calendar_widget(self):
         client = Client()
-        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        client.post(reverse('django.contrib.auth.views.login'), {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnless('type="text/javascript" src="/media/jquery-1.4.2.min.js"' in response.content, 'no library jquery')
         self.failUnless('type="text/javascript" src="/media/jquery.ui.core.js"' in response.content, 'no library jquery.ui.core')
@@ -50,13 +50,13 @@ class SimpleTest(TestCase):
     
     def test_field_sort(self):
         client = Client()
-        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        client.post(reverse('django.contrib.auth.views.login'), {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnlessEqual(response.context['form'].fields.keyOrder[0], 'birthDate')
         
     def test_command(self):
-        result = print_modles(models.get_app('testMarchenko'))
-        self.failUnlessEqual(string.find(result, "User 1"), 0, "Change db or fail script")
+        result = print_modles()
+        self.failIfEqual(string.find(result, "User 1"), -1, "Change db or fail script")
   
     def test_edit_list_tag(self):
         user = User.objects.latest('pk')

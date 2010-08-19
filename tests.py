@@ -32,6 +32,16 @@ class SimpleTest(TestCase):
         client = Client()
         response = client.get('')
         self.failUnlessEqual(response.status_code, 302)
+        
+    def test_calendar_widget(self):
+        client = Client()
+        client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
+        response = client.get('')
+        self.failUnless('type="text/javascript" src="/media/jquery-1.4.2.min.js"' in response.content, 'no library jquery')
+        self.failUnless('type="text/javascript" src="/media/jquery.ui.core.js"' in response.content, 'no library jquery.ui.core')
+        self.failUnless('type="text/javascript" src="/media/jquery.ui.datepicker.js' in response.content, 'no library jquery.ui.datepicker.js')
+        self.failUnless('.datepicker();' in response.content, 'no library jquery')
+        
     
     def test_field_sort(self):
         client = Client()

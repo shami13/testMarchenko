@@ -45,7 +45,7 @@ class SimpleTest(TestCase):
         self.failUnless('type="text/javascript" src="/media/jquery-1.4.2.min.js"' in response.content, 'no library jquery')
         self.failUnless('type="text/javascript" src="/media/jquery.ui.core.js"' in response.content, 'no library jquery.ui.core')
         self.failUnless('type="text/javascript" src="/media/jquery.ui.datepicker.js' in response.content, 'no library jquery.ui.datepicker.js')
-        self.failUnless('.datepicker();' in response.content, 'no library jquery')
+        self.failUnless('.datepicker(' in response.content, "don't used jquery datepicker")
         
     
     def test_field_sort(self):
@@ -57,6 +57,7 @@ class SimpleTest(TestCase):
     def test_command(self):
         result = print_modles(models.get_app('testMarchenko'))
         self.failUnlessEqual(string.find(result, "User 1"), 0, "Change db or fail script")
+  
     def test_edit_list_tag(self):
         user = User.objects.latest('pk')
         self.failUnlessEqual(edit_list(user), '<a href="/admin/auth/User/2"> edit User</a>', 'edit_list fail')

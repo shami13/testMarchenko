@@ -10,7 +10,8 @@ from models import User
 def main_page(request):
     if len(request.POST) > 0:
         form = UserForm(request.POST)
-        form.save()
+        if form.is_valid():
+            form.save()
     else:
         user = User.objects.latest('pk')
         form = UserForm(instance=user)

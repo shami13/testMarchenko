@@ -39,5 +39,5 @@ class SimpleTest(TestCase):
         self.failUnless('type="text/javascript" src="/media/jquery-1.4.2.min.js"' in response.content, 'no library jquery')
         self.failUnless('type="text/javascript" src="/media/jquery.ui.core.js"' in response.content, 'no library jquery.ui.core')
         self.failUnless('type="text/javascript" src="/media/jquery.ui.datepicker.js' in response.content, 'no library jquery.ui.datepicker.js')
-        self.failUnless('.datepicker();' in response.content, 'no library jquery')
+        self.failUnless('.datepicker(' in response.content, "don't used jquery datepicker")
         

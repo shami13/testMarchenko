@@ -1,4 +1,6 @@
 import os
+from django.contrib.auth.models import User
+from templatetags.edit_list import edit_list
 from forms import UserForm
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
@@ -48,3 +50,7 @@ class SimpleTest(TestCase):
         client.post('/accounts/login/', {'username' : 'admin', 'password':'password'})
         response = client.get('')
         self.failUnlessEqual(response.context['form'].fields.keyOrder[0], 'birthDate')
+        
+    def test_edit_list_tag(self):
+        user = User.objects.latest('pk')
+        self.failUnlessEqual(edit_list(user), '<a href="/admin/auth/User/2"> edit User</a>', 'edit_list fail')

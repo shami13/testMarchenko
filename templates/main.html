@@ -1,3 +1,4 @@
+{% load edit_list %}
 <html><head>
   <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
   <script type="text/javascript" src="/media/jquery.ui.core.js"></script>
@@ -12,7 +13,9 @@
         </p>
     {% endif %}
 <form action="{% url testMarchenko.views.main_page %}" method="post">
+{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>
+{% edit_list user %}
 </body></html>

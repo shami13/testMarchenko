@@ -2,6 +2,13 @@
 <head>
 </head>
 <body>
-<form action="/main/" method="post">{% csrf_token %} {{ form.as_p}} <input type="submit" value="Submit" /></form>
-</body>
-</html>
+  {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+<form action="{% url testMarchenko.views.main_page %}" method="post">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+</body></html>

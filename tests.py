@@ -1,4 +1,5 @@
 import os
+from forms import UserForm
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.test import TestCase
 from django.test.client import Client

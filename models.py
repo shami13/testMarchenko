@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import signals
 from signals import add_models_action_save, add_models_action_delete
-from django.db.models.loading import get_apps, get_app
+from django.db.models.loading import get_apps, get_app, get_models
 import settings
 
 class User(models.Model):
@@ -25,8 +25,7 @@ class ModelActions(models.Model):
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     date = models.DateTimeField(auto_now=True)
 
-for app_name in settings.INSTALLED_APPS:
-    if app_name.find("django") == -1:
-        app = get_app(app_name)
-        signals.pre_save.connect(add_models_action_save, sender=app.models)    
-        signals.post_delete.connect(add_models_action_delete, sender=app.models)    
+for model in get_models():
+    if model.__module__.find("django") == -1:
+        signals.pre_save.connect(add_models_action_save, sender=model)    
+        signals.post_delete.connect(add_models_action_delete, sender=model)    

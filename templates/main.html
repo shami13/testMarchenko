@@ -1,5 +1,11 @@
-<html>
-<head>
+{% load edit_list %}
+<html><head>
+  <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/media/jquery.ui.core.js"></script>
+  <script type="text/javascript" src="/media/jquery.ui.datepicker.js"></script>
+  <link rel="stylesheet" href="/media/jquery-ui.css" type="text/css" media="all" /> 
+  <link rel="stylesheet" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}" type="text/css" media="all" /> 
+  <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
   <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
   <script type="text/javascript" src="/media/jquery.form.js"></script>
    <script type="text/javascript"> 
@@ -32,7 +38,19 @@
     </script> 
 </head>
 <body>
-<form id="myForm" action="/main/" method="post">{% csrf_token %} {{ form.as_p}} <input type="submit" value="Submit" /></form>
+  {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+<form action="{% url testMarchenko.views.main_page %}" method="post">
+{% csrf_token %}
+<table>
+{{ form.as_table }}
+</table>
+<input type="submit" value="Submit" />
+</form>
+{% edit_list user %}
 <div id="load"></div>
 </body>
 </html>

@@ -4,6 +4,7 @@
   <script type="text/javascript" src="/media/jquery.ui.core.js"></script>
   <script type="text/javascript" src="/media/jquery.ui.datepicker.js"></script>
   <link rel="stylesheet" href="/media/jquery-ui.css" type="text/css" media="all" /> 
+  <link rel="stylesheet" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}" type="text/css" media="all" /> 
   <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
 </head>
 <body>
@@ -14,7 +15,9 @@
     {% endif %}
 <form action="{% url testMarchenko.views.main_page %}" method="post">
 {% csrf_token %}
-{{ form.as_p }}
+<table>
+{{ form.as_table }}
+</table>
 <input type="submit" value="Submit" />
 </form>
 {% edit_list user %}

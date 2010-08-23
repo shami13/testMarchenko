@@ -16,5 +16,4 @@ urlpatterns = patterns('',
     (r'^accounts/', include('accounts.urls')),
     (r'^admin/jsi18n/', 'django.views.i18n.javascript_catalog'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),
-    
-)
+    )

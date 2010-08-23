@@ -1,6 +1,5 @@
 import os
 from management.commands.printmodels import print_modles
-from django.db import models
 import string
 from django.contrib.auth.models import User
 from templatetags.edit_list import edit_list

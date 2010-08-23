@@ -60,6 +60,7 @@ class SimpleTest(TestCase):
     def test_edit_list_tag(self):
         user = User.objects.latest('pk')
         self.failUnlessEqual(edit_list(user), '<a href="/admin/auth/User/2"> edit User</a>', 'edit_list fail')
+   
     def test_signals(self):
         client = Client()
         count = ModelActions.objects.count()

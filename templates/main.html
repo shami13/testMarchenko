@@ -3,11 +3,11 @@
   <script type="text/javascript" src="/media/jquery-1.4.2.min.js"></script>
   <script type="text/javascript" src="/media/jquery.ui.core.js"></script>
   <script type="text/javascript" src="/media/jquery.ui.datepicker.js"></script>
+  <script type="text/javascript" src="/media/jquery.form.js"></script>
   <link rel="stylesheet" href="/media/jquery-ui.css" type="text/css" media="all" /> 
   <link rel="stylesheet" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}" type="text/css" media="all" /> 
   <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
-  <script type="text/javascript" src="/media/jquery.form.js"></script>
-   <script type="text/javascript"> 
+  <script type="text/javascript"> 
         $(document).ready(function() { 
             var options = {
             beforeSubmit: showLoad,
@@ -17,10 +17,10 @@
         
         function showLoad(){
           $("#load").empty().html('<img src="/media/images/ajax-loader.gif" />');
-          $('#myForm').children().each( 
+          $('#myForm').children('input').each( 
             function(){
-              $('this').attr('disabled', true);
-              $('this').attr('readonly', true);
+              $(this).attr('disabled', true);
+              $(this).attr('readonly', true);
             }
           );
         }
@@ -29,8 +29,8 @@
           $("#load").empty();
           $('#myForm').children().each( 
             function(){
-              $('this').removeAttr("disabled");
-              $('this').removeAttr("readonly");
+              $(this).removeAttr("disabled");
+              $(this).removeAttr("readonly");
             }
           );
         }
@@ -42,7 +42,7 @@
             Please correct the error{{ form.errors|pluralize }} below.
         </p>
     {% endif %}
-<form action="{% url testMarchenko.views.main_page %}" method="post">
+<form id="myForm" action="{% url testMarchenko.views.main_page %}" method="post">
 {% csrf_token %}
 <table>
 {{ form.as_table }}
@@ -50,6 +50,8 @@
 <input type="submit" value="Submit" />
 </form>
 {% edit_list user %}
+<br/>
+<a href="{% url testMarchenko.views.url_list %}">Url list</>
 <div id="load"></div>
 </body>
 </html>

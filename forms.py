@@ -8,7 +8,7 @@ class CalendarWidget(widgets.DateInput):
         res = super(CalendarWidget, self).render(name, value, attrs=attributes)
         res += """ <script type="text/javascript">
   $(function() {
-    $("#id_%s").datepicker(); 
+    $("#id_%s").datepicker({ dateFormat: 'yy-mm-dd' });
   });
   </script>""" % name
         return res

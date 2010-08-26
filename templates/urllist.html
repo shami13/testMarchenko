@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+  <ul>
+  {% for object in object_list %}
+    <li>
+        <a href="http://{{ object.url }}">
+   {{ object.url }}
+        </a>
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

@@ -8,6 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', views.main_page),
+    url(r'^urllist', 'testMarchenko.views.url_list'),          
     (r'^main/$', views.main_page),
     url(r'^main', 'testMarchenko.views.main_page'),
     url(r'^ajax_request', 'testMarchenko.views.ajax_request'),

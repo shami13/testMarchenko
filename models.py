@@ -1,8 +1,7 @@
 from django.db import models
 from django.db.models import signals
 from signals import add_models_action_save, add_models_action_delete
-from django.db.models.loading import get_apps, get_app, get_models
-import settings
+from django.db.models.loading import get_models
 
 class User(models.Model):
     firstName = models.CharField(max_length=50)

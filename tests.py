@@ -66,3 +66,11 @@ class SimpleTest(TestCase):
         client.get("")
         count = ModelActions.objects.count() - count
         self.failUnlessEqual(count, 1, "Signal failed")
+        
+    def test_list_view(self):
+        client = Client()
+        response = client.get(reverse('testMarchenko.views.url_list')).context['object_list']
+        object_list = URL.objects.all()
+        self.failUnlessEqual(response[0], object_list[0], 'list view fail')
+
+        

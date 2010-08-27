@@ -13,6 +13,7 @@ class User(models.Model):
 class URL(models.Model):
     url = models.CharField(max_length=100)
     priority = models.IntegerField(default=1)
+
 ACTION_CHOICES = (
                   ('C', 'Created'),
                   ('M', 'Modified'),

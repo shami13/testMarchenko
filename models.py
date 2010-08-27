@@ -31,4 +31,4 @@ class ModelActions(models.Model):
 for model in get_models():
     if model.__module__.find("django") == -1:
         signals.pre_save.connect(add_models_action_save, sender=model)
-        signals.post_delete.connect(add_models_action_delete, sender=model)    
+        signals.post_delete.connect(add_models_action_delete, sender=model)

@@ -13,6 +13,6 @@ def add_models_action_save(instance, **kwargs):
     else:
         add_models_action(instance, 'M')
 
-        
+
 def add_models_action_delete(instance, **kwargs):
     add_models_action(instance, 'D')

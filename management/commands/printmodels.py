@@ -6,9 +6,11 @@ def print_modles():
         models = get_models()
         result = ""
         for model in models:
-            result += model._meta.object_name + " " + str(model.objects.count()) + "\n"
+            result += model._meta.object_name + " " + str(
+                                                model.objects.count()) + "\n"
             for field in model._meta.fields:
-                result += "\t" + field.name + " " + field.get_internal_type() + "\n"
+                result += ("\t %s %s\n" % field.name,
+                           field.get_internal_type())
         return result
 
 

@@ -8,23 +8,23 @@ from django.core.mail import send_mail
 
 
 class UserCreationForm(forms.ModelForm):
-    username = forms.RegexField(label="Username", max_length=30, 
+    username = forms.RegexField(label="Username", max_length=30,
                                 regex=r'^[\w.@+-]+$',
-                                help_text="""Required. 
-                                30 characters or fewer. Letters, 
+                                help_text="""Required.
+                                30 characters or fewer. Letters,
                                 digits and @/./+/-/_ only.""",
-                                error_messages={'invalid': 
+                                error_messages={'invalid':
                                 """This value may contain only letters,
                                  numbers and @/./+/-/_ characters."""})
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Password confirmation", 
+    password2 = forms.CharField(label="Password confirmation",
                                 widget=forms.PasswordInput,
-                                help_text="""Enter the same 
+                                help_text="""Enter the same
                                 password as above, for verification.""")
     email1 = forms.EmailField(label="Email", max_length=75)
     email2 = forms.EmailField(label="Email confirmation", max_length=75,
-                              help_text="""Enter your email address again. 
-                              A confirmation email will be sent to 
+                              help_text="""Enter your email address again.
+                              A confirmation email will be sent to
                               this address.""")
 
     class Meta:
@@ -37,7 +37,7 @@ class UserCreationForm(forms.ModelForm):
         if password1 != password2:
             raise forms.ValidationError("The two password fields didn't match")
         return password2
-    
+
     def clean_email1(self):
         email1 = self.cleaned_data["email1"]
         users_found = User.objects.filter(email__iexact=email1)

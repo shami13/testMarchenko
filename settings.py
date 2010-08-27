@@ -21,8 +21,8 @@ DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = os.path.join(SITE_ROOT, 'development.db')
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             
-DATABASE_PORT = ''             
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

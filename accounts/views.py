@@ -9,6 +9,7 @@ from django.conf import settings
 from django.utils.http import base36_to_int
 from django.contrib.sites.models import Site, RequestSite
 
+
 def signup(request, template_name='accounts/signup.html', 
            email_template_name='accounts/signup_email.html',
            signup_form=UserCreationForm,
@@ -29,17 +30,20 @@ def signup(request, template_name='accounts/signup.html',
             return HttpResponseRedirect(post_signup_redirect)
     else:
         form = signup_form()
-    return render_to_response(template_name, {'form': form,}, 
+    return render_to_response(template_name, 
+                              {'form': form}, 
                               context_instance=RequestContext(request))
+
 
 def signup_done(request, template_name='accounts/signup_done.html'):
     return render_to_response(template_name, 
                               context_instance=RequestContext(request))
 
+
 def signup_confirm(request, uidb36=None, token=None,
                    token_generator=default_token_generator,
                    post_signup_redirect=None):
-    assert uidb36 is not None and token is not None #checked par url
+    assert uidb36 is not None and token is not None
     if post_signup_redirect is None:
         post_signup_redirect = reverse('testMarchenko.accounts.views.signup_complete')
     try:
@@ -57,6 +61,7 @@ def signup_confirm(request, uidb36=None, token=None,
     else:
         context_instance['validlink'] = False
     return HttpResponseRedirect(post_signup_redirect)
+
 
 def signup_complete(request, template_name='accounts/signup_complete.html'):
     return render_to_response(template_name, 

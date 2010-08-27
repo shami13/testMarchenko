@@ -18,24 +18,28 @@ def main_page(request):
         user = User.objects.latest('pk')
         form = UserForm(instance=user)
     form.fields.keyOrder.reverse()
-    return render_to_response('main.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('main.html', 
+                              {'form': form}, 
+                              context_instance=RequestContext(request))
+
 
 def url_list(request):
     url_lists = URL.objects.all()[:10]
     return render_to_response('urllist.html',
         {'object_list': url_lists}, context_instance=RequestContext(request))
 
+
 @login_required
 def ajax_request(request):
     form = UserForm(request.POST)
     clean = form.is_valid()
-    rdict = {'bad' : 'false'}
+    rdict = {'bad': 'false'}
     if not clean:
-        rdict.update({'bad':'true'})
+        rdict.update({'bad': 'true'})
         d = {}
         for e in form.errors.iteritems():
-            d.update({e[0]:unicode(e[1])})
-        rdict.update({'errs':d})
+            d.update({e[0]: unicode(e[1])})
+        rdict.update({'errs': d})
     else:
         form.save()
     json = simplejson.dumps(rdict)

@@ -17,12 +17,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = os.path.join(SITE_ROOT, 'development.db')            # Or path to database file if using sqlite3.
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(SITE_ROOT, 'development.db')
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_HOST = ''             
+DATABASE_PORT = ''             
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -66,7 +66,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ('django.core.context_processors.auth',
-                               'testMarchenko.context_processors.add_django_settings_to_request',)
+    'testMarchenko.context_processors.add_django_settings_to_request',)
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
@@ -81,11 +81,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'testMarchenko.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-	os.path.join(SITE_ROOT, 'templates')
-)
+    os.path.join(SITE_ROOT, 'templates'))
 
 INSTALLED_APPS = (
     'django.contrib.admin',
